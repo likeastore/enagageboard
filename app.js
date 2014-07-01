@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var morgan = require('morgan');
 var cookieSession = require('cookie-session');
+var errorHandler = require('errorhandler');
 
 var config = require('./config');
 var logger = require('./source/utils/logger');
@@ -12,11 +13,12 @@ var app = express();
 var env = process.env.NODE_ENV || 'development';
 var port = process.env.PORT || 3007;
 
+// configuration
 if (env === 'development' || env === 'production') {
 	app.use(morgan());
+	app.use(errorHandler());
 }
 
-// configuration
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.set('views', __dirname + '/views');

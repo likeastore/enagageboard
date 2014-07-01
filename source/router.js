@@ -10,12 +10,12 @@ function router(app) {
 
 	app.route('/')
 		.get(checkAuth, function (req, res) {
-			res.render('master', {title: 'Likeastore | Engageboard'});
+			res.render('master', {title: 'Likeastore | Engageboard', mainCss: '/style.css'});
 		});
 
 	app.route('/login')
 		.get(function (req, res) {
-			res.render('login', {title: 'Login'});
+			res.render('login', {title: 'Login', mainCss: '/style.css'});
 		});
 
 }
