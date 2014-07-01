@@ -2,9 +2,7 @@ var moment = require('moment');
 var tracker = require('../db/tracker');
 
 function clicks(app) {
-	var route = app.route('/api/clicks');
-
-	route.get(function (req, res, next) {
+	app.route('/api/clicks').get(function (req, res, next) {
 		var from = req.query.from, to = req.query.to;
 
 		if (!from || !to) {
