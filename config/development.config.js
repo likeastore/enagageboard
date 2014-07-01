@@ -14,13 +14,24 @@ var config = {
 		'likeastore': '$2a$12$gS6K/5dt8ECKnB93BoVnse7qXTeljAH7dSlLZZrO7TPdLEYZwjnrG'
 	},
 
+	// seismo: {
+	// 	app: 'likeastore-production',
+	// 	options: {
+	// 		server: 'https://localhost:3005',
+	// 		credentials: {
+	// 			username: 'likeastore',
+	// 			password: 'mypass'
+	// 		}
+	// 	}
+	// }
+
 	seismo: {
 		app: 'likeastore-production',
 		options: {
-			server: 'https://localhost:3005',
+			server: 'https://analytics.likeastore.com',
 			credentials: {
 				username: 'likeastore',
-				password: 'mypass'
+				password: 'likeadmin7analitics'
 			}
 		}
 	}

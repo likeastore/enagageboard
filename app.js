@@ -38,5 +38,5 @@ require('./source/api')(app);
 
 // server
 app.listen(port, function () {
-	logger.info('Engageboard listening on port ' + port + ' ' + env + ' mongo: ' + config.connection);
+	logger.info('Engageboard listening on port ' + port + ' ' + env);
 });

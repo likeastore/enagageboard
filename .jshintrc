@@ -23,7 +23,8 @@
 		"process",
 		"console",
 		"__dirname",
-		"Buffer"
+		"Buffer",
+		"angular"
 	],
 
 	"asi" : false,

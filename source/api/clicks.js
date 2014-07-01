@@ -11,6 +11,25 @@ function clicks(app) {
 			res.json(results);
 		});
 	});
+
+	app.route('/api/clicks/queries').get(function (req, res, next) {
+		seismo.query({id: 'search-results-clicked', date: 'today'}, function(err, results) {
+			if (err) {
+				return next(err);
+			}
+
+			results = results.map(function (event) {
+				return {
+					user: event.data.user,
+					query: event.data.query,
+					url: event.data.url,
+					data: event.timestampt
+				};
+			});
+
+			res.json(results);
+		});
+	});
 }
 
 module.exports = clicks;
