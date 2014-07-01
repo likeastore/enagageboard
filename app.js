@@ -20,6 +20,7 @@ if (env === 'development' || env === 'production') {
 }
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(methodOverride());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -31,6 +32,7 @@ app.use(cookieSession({
 
 // routing
 require('./source/health')(app);
+require('./source/auth')(app);
 require('./source/router')(app);
 require('./source/api')(app);
 
