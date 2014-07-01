@@ -1,6 +1,4 @@
 var config = {
-	connection: 'mongodb://localhost:27017/trackerdb',
-
 	session: {
 		key: 'a119eb053f4b40b6e744bf7f7e277229b2a932a7'
 	},
@@ -19,8 +17,10 @@ var config = {
 	seismo: {
 		app: 'likeastore-production',
 		options: {
-			server: 'https://analytics.likeastore.com',
+			server: 'https://localhost:3005',
 			credentials: {
+				username: 'likeastore',
+				password: 'mypass'
 			}
 		}
 	}
