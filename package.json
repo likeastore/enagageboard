@@ -15,7 +15,9 @@
     "request": "~2.36.0",
     "mongojs": "~0.13.0",
     "underscore": "~1.6.0",
-    "respawn": "~0.4.2"
+    "respawn": "~0.4.2",
+    "ejs": "~1.0.0",
+    "cookie-session": "~1.0.2"
   },
   "devDependencies": {
     "mocha": "~1.20.1",
