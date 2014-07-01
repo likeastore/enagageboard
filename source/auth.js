@@ -7,8 +7,6 @@ function auth(app) {
 			var username = req.body.username;
 			var password = req.body.password;
 
-			console.log('/auth', username, password);
-
 			if (!username || !password) {
 				return res.redirect('/login');
 			}
@@ -29,8 +27,6 @@ function auth(app) {
 				}
 
 				req.session.authorized = true;
-
-				console.log('authorized');
 
 				res.redirect('/');
 			});
