@@ -1,23 +1,14 @@
-var moment = require('moment');
-var tracker = require('../db/tracker');
+var config = require('../../config');
+var seismo = require('seismo-client')(config.seismo.app, config.seismo.options);
 
 function clicks(app) {
 	app.route('/api/clicks').get(function (req, res, next) {
-		var from = req.query.from, to = req.query.to;
-
-		if (!from || !to) {
-			return res.send(412, {message: 'missing `from` or `to` query parameters'});
-		}
-
-		from = moment(from).utc().toDate();
-		to = moment(to).utc().toDate();
-
-		tracker.links.find({date: {$gte: from, $lt: to}}, function(err, clicks) {
+		seismo.report({id: 'search-results-clicked', report: 'day', date: 'today'}, function(err, results) {
 			if (err) {
 				return next(err);
 			}
 
-			res.json(clicks);
+			res.json(results);
 		});
 	});
 }
