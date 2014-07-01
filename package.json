@@ -1,7 +1,7 @@
 {
   "name": "enagageboard",
   "version": "0.0.1",
-  "description": "The place to track and measure engagement with Likeastore content.",
+  "description": "The place to measure engagement with Likeastore content.",
   "main": "app.js",
   "private": true,
   "dependencies": {

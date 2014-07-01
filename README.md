@@ -1,6 +1,6 @@
 # Engageboard
 
-The place to track and measure engagement with Likeastore content.
+The place to measure engagement with Likeastore content.
 
 # Licence (MIT)
 
