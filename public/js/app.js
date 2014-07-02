@@ -3,7 +3,8 @@
 var app = angular.module('engageboard', [
 	'ngRoute',
 	'ngResource',
-	'ngSanitize'
+	'ngSanitize',
+	'highcharts-ng'
 ]);
 
 app.config(function ($routeProvider, $locationProvider) {

@@ -29,7 +29,7 @@ function clicks(app) {
 					user: event.data.user,
 					query: event.data.query,
 					url: event.data.url,
-					data: event.timestampt
+					timestampt: event.timestampt
 				};
 			});
 
