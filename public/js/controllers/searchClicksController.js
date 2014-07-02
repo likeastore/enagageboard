@@ -18,16 +18,59 @@ angular.module('engageboard').controller('searchClicksController', function ($q,
 	var chart = $scope.chartConfig = {
 		options: {
 			chart: {
-				type: 'column'
+				type: 'column',
+				height: 340,
+				width: 1160
+			},
+
+			exporting: {
+				enabled: false
+			},
+
+			xAxis: {
+				type: 'category'
+			},
+
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Search clicks (by day)'
+				}
+			},
+
+			legend: {
+				enabled: false
 			}
 		},
+
 		title: {
-			text: 'search clicks by date'
+			text: ''
 		},
 
 		loading: true
 	};
 
+	var buildChart = function (from, to, queries) {
+		var range = _.range(moment(to).diff(from, 'days') + 1);
+		var dates = range.map(function (day) {
+			return moment(from).add(day, 'days');
+		});
+
+		var chart = dates.map(function (date) {
+			return [date.format('D MMM'), clicksByDate(date, queries)];
+		});
+
+		return chart;
+
+		function clicksByDate(date, queries) {
+			var clicks = _.filter(queries, function (click) {
+				var timestampt = moment(click.timestampt);
+				return date.isSame(timestampt, 'day');
+			});
+
+			return (clicks && clicks.length) || 0;
+		}
+	};
 
 	var all = $q.all(promises);
 	all.then(function (results) {
@@ -37,9 +80,10 @@ angular.module('engageboard').controller('searchClicksController', function ($q,
 		search.period = results[2].from + ' / ' + requests[2].to;
 		search.queries = results[3];
 
-		chart.series = [{ data: [ ['6 Jun 2014', 1], ['7 Jun 2014', 2], ['8 Jun 2014', 3], ['9 Jun 2014', 4] ]}];
-		chart.loading = false;
+		var data = buildChart(results[2].from, requests[2].to, search.queries);
+		chart.series = [{name: 'clicks', data: data, dataLabels: {enabled: false}}];
 
+		chart.loading = false;
 		$scope.ready = true;
 	});
 
