@@ -4,7 +4,13 @@ angular.module('engageboard').controller('searchClicksController', function ($q,
 	var api = $resource('/api/:res');
 	var search = $scope.search = {};
 
-	var promises = [api.get({res: 'clicks'}), api.get({res: 'searches'})].map(function (resource) {
+	var requests = [
+		api.get({res: 'clicks'}),
+		api.get({res: 'searches'}),
+		api.get({res: 'period'})
+	];
+
+	var promises = requests.map(function (resource) {
 		return resource.$promise;
 	});
 
@@ -13,5 +19,8 @@ angular.module('engageboard').controller('searchClicksController', function ($q,
 		search.clicks = results[0].total;
 		search.hits = results[1].total;
 		search.ctr = (((search.clicks * 100) / search.hits).toFixed(3)) + '%';
+		search.period = results[2].from + ' / ' + requests[2].to;
+
+		$scope.ready = true;
 	});
 });

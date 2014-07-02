@@ -7,8 +7,6 @@ function searches(app) {
 	app.route('/api/searches').get(function (req, res, next) {
 		var query = _.extend({id: 'search', report: 'period'}, period.get());
 
-		console.log('/api/searches', query);
-
 		seismo.report(query, function(err, results) {
 			if (err) {
 				return next(err);
