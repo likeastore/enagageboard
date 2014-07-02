@@ -1,9 +1,15 @@
+var _ = require('underscore');
 var config = require('../../config');
 var seismo = require('seismo-client')(config.seismo.app, config.seismo.options);
+var period = require('../models/period');
 
 function searches(app) {
 	app.route('/api/searches').get(function (req, res, next) {
-		seismo.report({id: 'search', report: 'day', date: 'today'}, function(err, results) {
+		var query = _.extend({id: 'search', report: 'period'}, period.get());
+
+		console.log('/api/searches', query);
+
+		seismo.report(query, function(err, results) {
 			if (err) {
 				return next(err);
 			}

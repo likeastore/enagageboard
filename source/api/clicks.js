@@ -1,9 +1,15 @@
+var _ = require('underscore');
 var config = require('../../config');
 var seismo = require('seismo-client')(config.seismo.app, config.seismo.options);
+var period = require('../models/period');
 
 function clicks(app) {
 	app.route('/api/clicks').get(function (req, res, next) {
-		seismo.report({id: 'search-results-clicked', report: 'day', date: 'today'}, function(err, results) {
+		var query = _.extend({id: 'search-results-clicked', report: 'period'}, period.get());
+
+		console.log('/api/clicks', query);
+
+		seismo.report(query, function(err, results) {
 			if (err) {
 				return next(err);
 			}
@@ -13,7 +19,9 @@ function clicks(app) {
 	});
 
 	app.route('/api/clicks/queries').get(function (req, res, next) {
-		seismo.query({id: 'search-results-clicked', date: 'today'}, function(err, results) {
+		var query = _.extend({id: 'search-results-clicked', report: 'period'}, period.get());
+
+		seismo.query(query, function(err, results) {
 			if (err) {
 				return next(err);
 			}
