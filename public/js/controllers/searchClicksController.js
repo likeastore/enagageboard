@@ -72,19 +72,26 @@ angular.module('engageboard').controller('searchClicksController', function ($q,
 		}
 	};
 
-	var all = $q.all(promises);
-	all.then(function (results) {
-		search.clicks = results[0].total;
-		search.hits = results[1].total;
-		search.ctr = (((search.clicks * 100) / search.hits).toFixed(3)) + '%';
-		search.period = results[2].from + ' / ' + requests[2].to;
-		search.queries = results[3];
+	var ready = function (results) {
+		var clicks = results[0],
+			hits = results[1],
+			period = results[2],
+			queries = results[3];
 
-		var data = buildChart(results[2].from, requests[2].to, search.queries);
+		search.clicks = clicks.total;
+		search.hits = hits.total;
+		search.ctr = (((search.clicks * 100) / search.hits).toFixed(3)) + '%';
+		search.period = period.from + ' / ' + period.to;
+		search.queries = queries;
+
+		var data = buildChart(period.from, period.to, search.queries);
 		chart.series = [{name: 'clicks', data: data, dataLabels: {enabled: false}}];
 
 		chart.loading = false;
 		$scope.ready = true;
-	});
+	};
+
+	var all = $q.all(promises);
+	all.then(ready);
 
 });
