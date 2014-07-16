@@ -2,36 +2,36 @@
 
 var app = angular.module('engageboard', [
 	'ui.router',
-	'ngRoute',
+	// 'ngRoute',
 	'ngResource',
 	'ngSanitize',
 	'highcharts-ng'
 ]);
 
-app.config(function ($stateProvider, $routeProvider, $locationProvider) {
-	$routeProvider
-		.when('/', { templateUrl: 'views/main.html'})
-		.otherwise({ redirectTo: '/' });
-
+app.config(function ($stateProvider, $locationProvider) {
 	$stateProvider
-		.state('analytics', {
-			url: '/analytics',
+		.state('main', {
+			url: '/',
+			templateUrl: 'views/main.html'
+		})
+		.state('main.analytics', {
+			url: 'analytics',
 			template: '<h1>Analytics part</h1>'
 		})
-		.state('search', {
-			url: '/search',
-			templateUrl: 'views/dashboard.html'
+		.state('main.search', {
+			url: 'search',
+			template: '<h1>Seach part</h1>'
 		})
-		.state('feed', {
-			url: '/feed',
+		.state('main.feed', {
+			url: 'feed',
 			template: '<h1>Feed part</h1>'
 		})
-		.state('queries', {
-			url: '/queries',
+		.state('main.queries', {
+			url: 'queries',
 			template: '<h1>Queries part</h1>'
 		})
-		.state('collections', {
-			url: '/collections',
+		.state('main.collections', {
+			url: 'collections',
 			template: '<h1>Collections part</h1>'
 		});
 

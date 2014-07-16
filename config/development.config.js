@@ -17,7 +17,7 @@ var config = {
 	seismo: {
 		app: 'likeastore-production',
 		options: {
-			server: 'https://localhost:3005',
+			server: 'http://localhost:3005',
 			credentials: {
 				username: 'likeastore',
 				password: 'mypass'

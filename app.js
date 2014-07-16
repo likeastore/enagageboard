@@ -14,10 +14,7 @@ var env = process.env.NODE_ENV || 'development';
 var port = process.env.PORT || 3007;
 
 // configuration
-if (env === 'development' || env === 'production') {
-	app.use(morgan());
-	app.use(errorHandler());
-}
+app.use(morgan({ format: 'dev', immediate: true }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -35,6 +32,10 @@ require('./source/health')(app);
 require('./source/auth')(app);
 require('./source/router')(app);
 require('./source/api')(app);
+
+if (env === 'development' || env === 'test') {
+	app.use(errorHandler());
+}
 
 // server
 app.listen(port, function () {

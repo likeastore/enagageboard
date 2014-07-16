@@ -9,7 +9,7 @@ function clicks(app) {
 
 		seismo.report(query, function(err, results) {
 			if (err) {
-				return next(err);
+				return next(new Error(err));
 			}
 
 			res.json(results);
