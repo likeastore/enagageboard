@@ -27,7 +27,7 @@ input {
 }
 
 .row {
-    padding: 40px 140px;
+    padding: 40px 120px;
 }
 
 .period {
@@ -50,14 +50,14 @@ input {
 }
 
 .report p {
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 100;
 }
 
 .total {
     color: #384242;
     font-weight: bold;
-    font-size: 75px;
+    font-size: 70px;
 }
 
 .login-panel {

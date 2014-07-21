@@ -2,7 +2,6 @@
 
 var app = angular.module('engageboard', [
 	'ui.router',
-	// 'ngRoute',
 	'ngResource',
 	'ngSanitize',
 	'highcharts-ng'
@@ -16,7 +15,7 @@ app.config(function ($stateProvider, $locationProvider) {
 		})
 		.state('main.analytics', {
 			url: 'analytics',
-			template: '<h1>Analytics part</h1>'
+			templateUrl: 'views/analytics.html'
 		})
 		.state('main.search', {
 			url: 'search',
