@@ -24,15 +24,15 @@ app.config(function ($stateProvider, $locationProvider) {
 		})
 		.state('main.feed', {
 			url: 'feed',
-			template: '<h1>Feed part</h1>'
+			template: '<h1 class="row">Feed part will be soon</h1>'
 		})
 		.state('main.queries', {
 			url: 'queries',
-			template: '<h1>Queries part</h1>'
+			template: '<h1 class="row">Queries part will be soon</h1>'
 		})
 		.state('main.collections', {
 			url: 'collections',
-			template: '<h1>Collections part</h1>'
+			template: '<h1 class="row">Collections part will be soon</h1>'
 		});
 
 	$locationProvider.html5Mode(true);
