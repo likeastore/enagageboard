@@ -1,6 +1,7 @@
 'use strict';
 
 var app = angular.module('engageboard', [
+	'ngActivityIndicator',
 	'ui.router',
 	'ngResource',
 	'ngSanitize',

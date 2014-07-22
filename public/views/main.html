@@ -5,4 +5,5 @@
 	<li><a ui-sref="main.queries">Queries</a></li>
 	<li><a ui-sref="main.collections">Collections</a></li>
 </ul>
-<div ui-view></div>
+<div ng-hide="!AILoading" ng-activity-indicator class="spin-center"></div>
+<div ng-hide="AILoading" ui-view></div>

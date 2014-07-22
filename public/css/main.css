@@ -74,3 +74,8 @@ input {
 .login-panel form {
     padding: 16px 0;
 }
+
+.spin-center {
+	margin: 180px 50%;
+	text-align: center;
+}

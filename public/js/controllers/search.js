@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('engageboard').controller('searchController', function ($q, $scope, $resource) {
+angular.module('engageboard').controller('searchController', function ($q, $scope, $resource, $activityIndicator) {
 	var api = $resource('/api/:res/:sub');
 	var search = $scope.search = {};
 
@@ -72,6 +72,8 @@ angular.module('engageboard').controller('searchController', function ($q, $scop
 		}
 	};
 
+	$activityIndicator.startAnimating();
+
 	var ready = function (results) {
 		var clicks = results[0],
 			hits = results[1],
@@ -88,7 +90,7 @@ angular.module('engageboard').controller('searchController', function ($q, $scop
 		chart.series = [{name: 'clicks', data: data, dataLabels: {enabled: false}}];
 
 		chart.loading = false;
-		$scope.ready = true;
+		$activityIndicator.stopAnimating();
 	};
 
 	var all = $q.all(promises);

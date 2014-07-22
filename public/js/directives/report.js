@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('engageboard').directive('report', function (reports) {
+angular.module('engageboard').directive('report', function ($q, reports, $activityIndicator) {
 	var dates = {
 		today: moment(),
 		yesterday: moment().subtract('days', 1),
@@ -13,60 +13,45 @@ angular.module('engageboard').directive('report', function (reports) {
 		templateUrl: 'views/widgets/report.html',
 		scope: true,
 		link: function ($scope, elem, attrs) {
+			$activityIndicator.startAnimating();
+
 			$scope.heading = attrs.periodHeading;
 			$scope.datePeriod = dates[attrs.date].format('DD/MM/YYYY');
 
-			reports(attrs.report, dates[attrs.date], 'user-registered', function (data) {
-				$scope.registered = data;
-			});
+			var requests = [
+				reports(attrs.report, dates[attrs.date], 'user-registered'),
+				reports(attrs.report, dates[attrs.date], 'user-verified'),
+				reports(attrs.report, dates[attrs.date], 'network-created'),
+				reports(attrs.report, dates[attrs.date], 'search'),
+				reports(attrs.report, dates[attrs.date], 'share-like'),
+				reports(attrs.report, dates[attrs.date], 'share-with-friend'),
+				reports(attrs.report, dates[attrs.date], 'account-deactivated'),
+				reports(attrs.report, dates[attrs.date], 'collection-created'),
+				reports(attrs.report, dates[attrs.date], 'collection-shared'),
+				reports(attrs.report, dates[attrs.date], 'collection-followed'),
+				reports(attrs.report, dates[attrs.date], 'collection-unfollowed'),
+				reports(attrs.report, dates[attrs.date], 'collection-item-added')
+			];
 
-			reports(attrs.report, dates[attrs.date], 'user-verified', function (data) {
-				$scope.verified = data;
-			});
+			function ready(results) {
+				$scope.registered = results[0].data;
+				$scope.verified = results[1].data;
+				$scope.networksCreated = results[2].data;
+				$scope.searches = results[3].data;
+				$scope.shares = results[4].data;
+				$scope.sends = results[5].data;
+				$scope.deactivated = results[6].data;
+				$scope.collectionsCreated = results[7].data;
+				$scope.collectionsShared = results[8].data;
+				$scope.collectionsFollowed = results[9].data;
+				$scope.collectionsUnfollowed = results[10].data;
+				$scope.collectionsItemsAdded = results[11].data;
 
-			reports(attrs.report, dates[attrs.date], 'user-logged-on', function (data) {
-				$scope.loggedOn = data;
-			});
+				$activityIndicator.stopAnimating();
+			}
 
-			reports(attrs.report, dates[attrs.date], 'network-created', function (data) {
-				$scope.networksCreated = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'search', function (data) {
-				$scope.searches = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'share-like', function (data) {
-				$scope.shares = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'share-with-friend', function (data) {
-				$scope.sends = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'account-deactivated', function (data) {
-				$scope.deactivated = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'collection-created', function (data) {
-				$scope.collectionsCreated = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'collection-shared', function (data) {
-				$scope.collectionsShared = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'collection-followed', function (data) {
-				$scope.collectionsFollowed = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'collection-unfollowed', function (data) {
-				$scope.collectionsUnfollowed = data;
-			});
-
-			reports(attrs.report, dates[attrs.date], 'collection-item-added', function (data) {
-				$scope.collectionsItemsAdded = data;
-			});
+			var all = $q.all(requests);
+			all.then(ready);
 		}
 	};
 });
