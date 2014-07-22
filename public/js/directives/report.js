@@ -10,7 +10,7 @@ angular.module('engageboard').directive('report', function (reports) {
 
 	return {
 		restrict: 'E',
-		templateUrl: 'views/report.html',
+		templateUrl: 'views/widgets/report.html',
 		scope: true,
 		link: function ($scope, elem, attrs) {
 			$scope.heading = attrs.periodHeading;

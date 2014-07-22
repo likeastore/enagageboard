@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('engageboard').controller('searchClicksController', function ($q, $scope, $resource) {
+angular.module('engageboard').controller('searchController', function ($q, $scope, $resource) {
 	var api = $resource('/api/:res/:sub');
 	var search = $scope.search = {};
 

@@ -19,7 +19,7 @@ app.config(function ($stateProvider, $locationProvider) {
 		})
 		.state('main.search', {
 			url: 'search',
-			template: '<h1>Seach part</h1>'
+			templateUrl: 'views/search.html'
 		})
 		.state('main.feed', {
 			url: 'feed',
