@@ -75,7 +75,7 @@ angular.module('engageboard').controller('feedController', function ($q, $scope,
 
 	var ready = function (results) {
 		var clicks = results[0],
-			period = results[2],
+			period = results[1],
 			queries = results[2];
 
 		feed.clicks = clicks.total;
