@@ -30,8 +30,8 @@ app.use(cookieSession({
 // routing
 require('./source/health')(app);
 require('./source/auth')(app);
-require('./source/router')(app);
 require('./source/api')(app);
+require('./source/router')(app);
 
 if (env === 'development' || env === 'test') {
 	app.use(errorHandler());

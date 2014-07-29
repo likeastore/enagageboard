@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('engageboard').controller('searchController', function ($q, $scope, $resource, $activityIndicator) {
-	var api = $resource('/api/:res/:sub');
+	var api = $resource('/api/:res/:sub/:tar');
 	var search = $scope.search = {};
 
 	var requests = [
-		api.get({res: 'clicks'}),
+		api.get({res: 'clicks', sub: 'search', tar: 'report'}),
 		api.get({res: 'searches'}),
 		api.get({res: 'period'}),
-		api.query({res: 'clicks', sub: 'queries'})
+		api.query({res: 'clicks', sub: 'search', tar: 'query'})
 	];
 
 	var promises = requests.map(function (resource) {
