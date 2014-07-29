@@ -24,7 +24,7 @@ app.config(function ($stateProvider, $locationProvider) {
 		})
 		.state('main.feed', {
 			url: 'feed',
-			template: '<h1 class="row">Feed part will be soon</h1>'
+			templateUrl: 'views/feed.html'
 		})
 		.state('main.queries', {
 			url: 'queries',

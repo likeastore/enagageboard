@@ -1,0 +1,11 @@
+<div class="reports" ng-controller="feedController">
+	<div class="row pure-g">
+		<div class="pure-u-1-1 report">
+			<div class="total">{{feed.clicks}}</div>
+			<p>feed clicks</p>
+		</div>
+	</div>
+	<div class="row pure-g">
+		<highchart config="chartConfig" class="pure-u report"></highchart>
+	</div>
+</div>
